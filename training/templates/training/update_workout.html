@@ -1,0 +1,30 @@
+<h2>Workout: {{ workout.title }}</h2>
+<div id="timer">00:00:00</div>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Exercise</button>
+</form>
+<ul>
+    {% for exercise in exercises %}
+      <li>{{ exercise.name }} - {{ exercise.sets }} sets x {{ exercise.reps }} reps @ {{ exercise.weight }} kg</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'stop_workout' workout.id %}">Stop Workout</a>
+<script>
+    let startTime = new Date("{{ workout.start_time|date:'Y-m-d H:i:s' }}").getTime();
+    let timerInterval = setInterval(() => {
+      let now = new Date().getTime();
+      let elapsed = now - startTime;
+      let hours = Math.floor(elapsed / (1000 * 60 * 60));
+      let minutes = Math.floor((elapsed % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((elapsed % (1000 * 60)) / 1000);
+      document.getElementById("timer").innerHTML = 
+        (hours < 10 ? "0" + hours : hours) + ":" + 
+        (minutes < 10 ? "0" + minutes : minutes) + ":" + 
+        (seconds < 10 ? "0" + seconds : seconds);
+    }, 1000);
+</script>
+
+
+  

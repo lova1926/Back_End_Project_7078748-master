@@ -1,0 +1,11 @@
+
+<h2>Goal Detail</h2>
+<p>Title: {{ goal.title }}</p>
+<p>Description: {{ goal.description }}</p>
+<p>Difficulty Level: {{ goal.difficulty_level }}</p>
+<p>Completed: {{ goal.completed }}</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">{{ goal.completed|yesno:"Mark as Incomplete,Mark as Complete" }}</button>
+</form>
+

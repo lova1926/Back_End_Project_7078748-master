@@ -1,0 +1,44 @@
+<h2 style="color: red;">{{ username }}</h2>
+
+<form method="post" action="{% url 'logout' %}">
+  {% csrf_token %}
+  <button type="submit">Logout</button>
+</form>
+
+<form method="post" enctype="multipart/form-data">
+{% csrf_token %}
+{{ form.as_p }}
+<button type="submit">Save</button>
+</form>
+
+<h2>Your Goals</h2>
+<a href="{% url 'create_goal' %}">Create a new goal</a>
+<ul>
+    {% for goal in goals %}
+    <li>
+        <a href="{% url 'goal_detail' goal.pk %}">
+            {{ goal.title }}
+        </a>
+        {% if goal.completed %}
+          <span style="color:green;">&#9679;</span>
+        {% else %}
+          <span style="color:orange;">&#9679;</span>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+
+<h2>Progress Tracker</h2>
+<img src="{{ chart }}" alt="Completion Rate Chart">
+
+<h2>My Workouts</h2>
+  <a href="{% url 'start_workout' %}">Start a new workout</a>
+  <ul>
+    {% for workout in workouts %}
+      <li>
+        <a href="{% url 'workout_detail' workout.id %}">
+          {{ workout.title }} - {{ workout.duration|default:"In Progress" }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>

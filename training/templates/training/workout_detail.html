@@ -1,0 +1,12 @@
+
+<h2>Workout: {{ workout.title }}</h2>
+<p>Duration: {{ workout.duration }}</p>
+<ul>
+    {% for exercise in exercises %}
+      <li>
+        <strong>{{ exercise.name }}</strong> - 
+        {{ exercise.sets }} sets x {{ exercise.reps }} reps @ {{ exercise.weight }} kg
+      </li>
+    {% endfor %}
+</ul>
+
