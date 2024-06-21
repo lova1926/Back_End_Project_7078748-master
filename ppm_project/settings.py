@@ -13,7 +13,7 @@ ALLOWED_HOSTS = ['.railway.app', 'localhost', '127.0.0.1']
 
 CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1:8000',
-    'https://web-production-e337.up.railway.app',
+    'https://web-production-f6fd.up.railway.app',
 ]
 
 INSTALLED_APPS = [
