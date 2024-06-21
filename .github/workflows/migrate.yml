@@ -28,6 +28,7 @@ jobs:
       env:
         DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        DEBUG: 'False'
       run: |
         python3 manage.py makemigrations
         python3 manage.py migrate
